@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 22,
+      "patch": 0
+  },
+  "configurePresets": [
+      {
+        "name": "QPC_CM0_GCC_Demo",
+        "displayName": "QPC_CM0_GCC_Demo",
+        "description": "Blinky STM32F072RB Discovery board demo",
+        "generator": "Ninja",
+        "environment": {
+            "CORTEX_TYPE": "cm0"
+        },
+        "binaryDir": "${sourceDir}/build/${presetName}",
+        "cacheVariables": {
+            "FETCHCONTENT_UPDATES_DISCONNECTED": "OFF",
+            "CMAKE_BUILD_TYPE": "Debug",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+            "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/_deps/cmake-toolchains-src/arm-none-eabi-gcc.cmake",
+            "GITHUB_BRANCH_TOOLCHAIN": "HEAD"
+        }
+    }
+  ],
+  "buildPresets": [
+      {
+          "name": "QPC_CM0_GCC_Demo",
+          "configurePreset": "QPC_CM0_GCC_Demo"
+      }
+  ]
+}

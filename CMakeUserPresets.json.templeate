@@ -1,0 +1,61 @@
+{
+    "version": 2,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "PLAT_RIG",
+            "displayName": "DebugRig",
+            "description": "Debug Prototype B(RIG) on PLAT branches",
+            "generator": "Ninja",
+            "environment": {
+                "ARM_GCC_ROOT_FOLDER": "/Applications/ARM"
+            },
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "FETCHCONTENT_UPDATES_DISCONNECTED": "ON",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+                "CMAKE_TOOLCHAIN_FILE": "./_deps/platform_cmake-src/.Darwin/clang-cortex-m7.cmake",
+                "UPSTREAM_DEP": "static",
+                "BOARD_TYPE": "prototype_b",
+                "MOTOR_CONFIGURATION": "RIG",
+                "DEBUGGER_IP": "192.168.3.222",
+		"GITHUB_BRANCH_TOOLCHAIN": "PLAT-1071"
+            }
+        },
+        {
+            "name": "PLAT_TABLE",
+            "displayName": "DebugTable",
+            "description": "Debug on real table PLAT branches",
+            "generator": "Ninja",
+            "environment": {
+                "ARM_GCC_ROOT_FOLDER": "/Applications/ARM"
+            },
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "FETCHCONTENT_UPDATES_DISCONNECTED": "OFF",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
+                "CMAKE_TOOLCHAIN_FILE": "./_deps/platform_cmake-src/armgcc-cortex-m7.cmake",
+                "UPSTREAM_DEP": "static",
+                "BOARD_TYPE": "prototype_b",
+                "MOTOR_CONFIGURATION": "REAL_TABLE",
+                "DEBUGGER_IP": "192.168.3.222"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "PLAT_RIG",
+            "configurePreset": "PLAT_RIG"
+        },
+        {
+            "name": "PLAT_TABLE",
+            "configurePreset": "PLAT_TABLE"
+        }
+    ]
+}
