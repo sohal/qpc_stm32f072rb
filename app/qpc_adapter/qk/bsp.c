@@ -68,7 +68,7 @@ void TIM17_IRQHandler(void)
         HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
     }
     tVar++;
-    QK_ISR_EXIT();  /* inform QK about exiting an ISR */    
+    QK_ISR_EXIT();  /* inform QK about exiting an ISR */
 }
 
 /*..........................................................................*/

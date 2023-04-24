@@ -4,7 +4,7 @@ include(${cmake-toolchains_SOURCE_DIR}/frameworks/lib_QPC.cmake)
 set(app_SOURCE_DIR ${CMAKE_SOURCE_DIR}/app/qpc_adapter)
 set(app_SOURCES
     ${app_SOURCE_DIR}/qpc_app.c
-    ${app_SOURCE_DIR}/blinky.c
+    ${app_SOURCE_DIR}/ao_blinky/blinky.c
     ${app_SOURCE_DIR}/qk/bsp.c
 )
 
@@ -22,6 +22,7 @@ target_include_directories(app
     "$<$<AND:$<CONFIG:Debug>,$<COMPILE_LANGUAGE:C>>:${PROJECT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32F0xx/Include>"
     PUBLIC
     ${app_SOURCE_DIR}
+    ${app_SOURCE_DIR}/ao_blinky
     $<BUILD_INTERFACE:${app_SOURCE_DIR}>
 )
 

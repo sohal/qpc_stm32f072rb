@@ -7,3 +7,6 @@
 *.launch
 _deps
 CMakeUserPresets.json
+app/qpc_adapter/ao_blinky/bsp.*
+app/qpc_adapter/ao_blinky/Makefile
+app/qpc_adapter/ao_blinky/main.c
