@@ -32,7 +32,6 @@ set(libName app)
 setTargetCompileOptions(libName)
 
 target_link_libraries(app
-    hal
     qpc
     canopennode-stm32
     canopennode-od

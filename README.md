@@ -3,4 +3,4 @@
 
 
 # Preview
-![Overview](./.readme/app.svg)
+![Overview](./.readme/readme.svg)
