@@ -60,7 +60,7 @@ static QState CANopenNodeSTM32_initial(CANopenNodeSTM32_ao * const me, void cons
     me->canOpenNodeSTM32.HWInitFunction = MX_CAN_Init;
     me->canOpenNodeSTM32.timerHandle = &htim14;
     me->canOpenNodeSTM32.desiredNodeID = 24;
-    me->canOpenNodeSTM32.baudrate = 125;
+    me->canOpenNodeSTM32.baudrate = 250;
     canopen_app_init(&me->canOpenNodeSTM32);
     /* arm the private time event to expire in 1/2s
     * and periodically every 1/2 second
