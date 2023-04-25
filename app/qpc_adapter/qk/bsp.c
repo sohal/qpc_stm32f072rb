@@ -32,7 +32,6 @@
 * <info@state-machine.com>
 *****************************************************************************/
 #include "qpc.h"
-#include "blinky.h"
 #include "bsp.h"
 
 #include "stm32f072xb.h"
@@ -46,10 +45,14 @@ Q_DEFINE_THIS_FILE
     #error Simple Blinky Application does not provide Spy build configuration
 #endif
 extern TIM_HandleTypeDef htim17;
+extern TIM_HandleTypeDef htim14;
+extern CAN_HandleTypeDef hcan;
 static volatile uint32_t tVar;
 /* ISRs defined in this BSP ------------------------------------------------*/
 void SysTick_Handler(void);
-void TIM1_BRK_UP_TRG_COM_IRQHandler(void);
+void TIM17_IRQHandler(void);
+void TIM14_IRQHandler(void);
+void CEC_CAN_IRQHandler(void);
 /* Local-scope objects -----------------------------------------------------*/
 
 /* ISRs used in this project ===============================================*/
@@ -62,15 +65,17 @@ void TIM17_IRQHandler(void)
 {
     QK_ISR_ENTRY();   /* inform QK about entering an ISR */
     HAL_TIM_IRQHandler(&htim17);
-    if(tVar > 200)
-    {
-        tVar = 0;
-        HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-    }
     tVar++;
     QK_ISR_EXIT();  /* inform QK about exiting an ISR */
 }
-
+void TIM14_IRQHandler(void)
+{
+    HAL_TIM_IRQHandler(&htim14);
+}
+void CEC_CAN_IRQHandler(void)
+{
+    HAL_CAN_IRQHandler(&hcan);
+}
 /*..........................................................................*/
 void BSP_init(void) {
 

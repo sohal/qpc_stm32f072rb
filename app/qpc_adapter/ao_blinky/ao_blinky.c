@@ -30,7 +30,8 @@
 /*$endhead${.::blinky.c} ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 #include "qpc.h"    /* QP/C framework API */
 #include "bsp.h"    /* Board Support Package interface */
-
+#include "ao_blinky.h"
+#include "app_signals.h"
 /* ask QM to declare the Blinky class --------------------------------------*/
 /*$declare${AOs::Blinky} vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
 
@@ -67,7 +68,7 @@ QActive * const AO_Blinky = &l_blinky.super;
 void Blinky_ctor(void) {
     Blinky *me = (Blinky *)AO_Blinky;
     QActive_ctor(&me->super, Q_STATE_CAST(&Blinky_initial));
-    QTimeEvt_ctorX(&me->timeEvt, &me->super, TIMEOUT_SIG, 0U);
+    QTimeEvt_ctorX(&me->timeEvt, &me->super, AO_BLINKY_TIMEOUT_SIG, 0U);
 }
 /*$enddef${AOs::Blinky_ctor} ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 /*$define${AOs::Blinky} vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv*/
@@ -98,7 +99,7 @@ static QState Blinky_off(Blinky * const me, QEvt const * const e) {
             break;
         }
         /*${AOs::Blinky::SM::off::TIMEOUT} */
-        case TIMEOUT_SIG: {
+        case AO_BLINKY_TIMEOUT_SIG: {
             status_ = Q_TRAN(&Blinky_on);
             break;
         }
@@ -121,7 +122,7 @@ static QState Blinky_on(Blinky * const me, QEvt const * const e) {
             break;
         }
         /*${AOs::Blinky::SM::on::TIMEOUT} */
-        case TIMEOUT_SIG: {
+        case AO_BLINKY_TIMEOUT_SIG: {
             status_ = Q_TRAN(&Blinky_off);
             break;
         }

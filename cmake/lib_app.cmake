@@ -4,7 +4,8 @@ include(${cmake-toolchains_SOURCE_DIR}/frameworks/lib_QPC.cmake)
 set(app_SOURCE_DIR ${CMAKE_SOURCE_DIR}/app/qpc_adapter)
 set(app_SOURCES
     ${app_SOURCE_DIR}/qpc_app.c
-    ${app_SOURCE_DIR}/ao_blinky/blinky.c
+    ${app_SOURCE_DIR}/ao_blinky/ao_blinky.c
+    ${app_SOURCE_DIR}/ao_canopen/ao_canopennodestm32.c
     ${app_SOURCE_DIR}/qk/bsp.c
 )
 
@@ -23,6 +24,7 @@ target_include_directories(app
     PUBLIC
     ${app_SOURCE_DIR}
     ${app_SOURCE_DIR}/ao_blinky
+    ${app_SOURCE_DIR}/ao_canopennode
     $<BUILD_INTERFACE:${app_SOURCE_DIR}>
 )
 
@@ -32,4 +34,6 @@ setTargetCompileOptions(libName)
 target_link_libraries(app
     hal
     qpc
+    canopennode-stm32
+    canopennode-od
 )

@@ -32,8 +32,11 @@
 * <info@state-machine.com>
 *****************************************************************************/
 #include "qpc.h"
-#include "blinky.h"
 #include "bsp.h"
+
+#include "ao_blinky.h"
+#include "ao_canopennodestm32.h"
+
 Q_DEFINE_THIS_FILE
 
 /*..........................................................................*/
@@ -47,7 +50,9 @@ static int qf_main(void) {
 
     /* instantiate and start the active objects... */
     Blinky_ctor();
+    CANopenNodeSTM32_ctor();
     static QEvt const *l_blinkyQSto[10]; /* Event queue storage for Blinky */
+    static QEvt const *l_canopennodeSTM32QSto[64];
     QACTIVE_START(AO_Blinky,      /* AO pointer to start */
                   2U,             /* QF-priority/preemption-threshold */
                   l_blinkyQSto,   /* storage for the AO's queue */
@@ -55,7 +60,13 @@ static int qf_main(void) {
                   (void *)0,      /* stack storage (not used in QK) */
                   0U,             /* stack size [bytes] (not used in QK) */
                   (QEvt *)0);     /* initial event (or 0) */
-
+    QACTIVE_START(AO_CANopenNodeSTM32,
+                  3U,
+                  l_canopennodeSTM32QSto,
+                  Q_DIM(l_canopennodeSTM32QSto),
+                  (void *)0,
+                  0U,
+                  (QEvt *)0);
     return QF_run(); /* run the QF application */
 }
 
