@@ -81,10 +81,10 @@ static QState CANopenNodeSTM32_operational(CANopenNodeSTM32_ao * const me, QEvt 
             break;
         }
         case AO_CANOPENNODESTM32_TIMEOUT_SIG: {
-            HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, !me->canOpenNodeSTM32.outStatusLEDRed);
-            HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, !me->canOpenNodeSTM32.outStatusLEDGreen);
 
             canopen_app_process();
+            HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, !me->canOpenNodeSTM32.outStatusLEDRed);
+            HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, !me->canOpenNodeSTM32.outStatusLEDGreen);
             status_ = Q_HANDLED();
             break;
         }
