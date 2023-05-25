@@ -1,0 +1,20 @@
+digraph "app" {
+node [
+  fontsize = "12"
+];
+    "node0" [ label = "app", shape = octagon ];
+    "node1" [ label = "canopennode-od", shape = octagon ];
+    "node0" -> "node1"  // app -> canopennode-od
+    "node2" [ label = "canopennode-stm32", shape = octagon ];
+    "node1" -> "node2"  // canopennode-od -> canopennode-stm32
+    "node3" [ label = "stm32f072rb_disco\n(stm32f072rb_disco::framework)", shape = octagon ];
+    "node2" -> "node3"  // canopennode-stm32 -> stm32f072rb_disco
+    "node4" [ label = "stm32f0xx_hal\n(stm32f0xx_hal::framework)", shape = octagon ];
+    "node3" -> "node4"  // stm32f072rb_disco -> stm32f0xx_hal
+    "node5" [ label = "cmsis-core", shape = pentagon ];
+    "node4" -> "node5" [ style = dashed ] // stm32f0xx_hal -> cmsis-core
+    "node2" [ label = "canopennode-stm32", shape = octagon ];
+    "node0" -> "node2"  // app -> canopennode-stm32
+    "node6" [ label = "qpc", shape = octagon ];
+    "node0" -> "node6"  // app -> qpc
+}

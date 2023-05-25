@@ -1,0 +1,10 @@
+digraph "qpc" {
+node [
+  fontsize = "12"
+];
+    "node6" [ label = "qpc", shape = octagon ];
+    "node0" [ label = "app", shape = octagon ];
+    "node0" -> "node6"  // app -> qpc
+    "node7" [ label = "blinky", shape = egg ];
+    "node7" -> "node0" [ style = dotted ] // blinky -> app
+}

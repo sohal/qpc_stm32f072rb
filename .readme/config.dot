@@ -1,0 +1,45 @@
+digraph "qpc_stm32f072_disco" {
+node [
+  fontsize = "12"
+];
+subgraph clusterLegend {
+  label = "Legend";
+  color = black;
+  edge [ style = invis ];
+  legendNode0 [ label = "Executable", shape = egg ];
+  legendNode1 [ label = "Static Library", shape = octagon ];
+  legendNode2 [ label = "Shared Library", shape = doubleoctagon ];
+  legendNode3 [ label = "Module Library", shape = tripleoctagon ];
+  legendNode4 [ label = "Interface Library", shape = pentagon ];
+  legendNode5 [ label = "Object Library", shape = hexagon ];
+  legendNode6 [ label = "Unknown Library", shape = septagon ];
+  legendNode7 [ label = "Custom Target", shape = box ];
+  legendNode0 -> legendNode1 [ style = solid ];
+  legendNode0 -> legendNode2 [ style = solid ];
+  legendNode0 -> legendNode3;
+  legendNode1 -> legendNode4 [ label = "Interface", style = dashed ];
+  legendNode2 -> legendNode5 [ label = "Private", style = dotted ];
+  legendNode3 -> legendNode6 [ style = solid ];
+  legendNode0 -> legendNode7;
+}
+    "node0" [ label = "app", shape = octagon ];
+    "node1" [ label = "canopennode-od", shape = octagon ];
+    "node2" [ label = "canopennode-stm32", shape = octagon ];
+    "node3" [ label = "stm32f072rb_disco\n(stm32f072rb_disco::framework)", shape = octagon ];
+    "node4" [ label = "stm32f0xx_hal\n(stm32f0xx_hal::framework)", shape = octagon ];
+    "node5" [ label = "cmsis-core", shape = pentagon ];
+    "node4" -> "node5" [ style = dashed ] // stm32f0xx_hal -> cmsis-core
+    "node3" -> "node4"  // stm32f072rb_disco -> stm32f0xx_hal
+    "node2" -> "node3"  // canopennode-stm32 -> stm32f072rb_disco
+    "node1" -> "node2"  // canopennode-od -> canopennode-stm32
+    "node0" -> "node1"  // app -> canopennode-od
+    "node0" -> "node2"  // app -> canopennode-stm32
+    "node6" [ label = "qpc", shape = octagon ];
+    "node0" -> "node6"  // app -> qpc
+    "node7" [ label = "blinky", shape = egg ];
+    "node7" -> "node0" [ style = dotted ] // blinky -> app
+    "node7" -> "node7"  // blinky -> blinky
+    "node8" [ label = "cmsis", shape = pentagon ];
+    "node9" [ label = "CMSISDSP", shape = septagon ];
+    "node8" -> "node9" [ style = dashed ] // cmsis -> CMSISDSP
+}

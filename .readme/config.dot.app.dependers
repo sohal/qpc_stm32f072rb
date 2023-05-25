@@ -1,0 +1,8 @@
+digraph "app" {
+node [
+  fontsize = "12"
+];
+    "node0" [ label = "app", shape = octagon ];
+    "node7" [ label = "blinky", shape = egg ];
+    "node7" -> "node0" [ style = dotted ] // blinky -> app
+}

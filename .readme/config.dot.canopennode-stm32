@@ -1,0 +1,12 @@
+digraph "canopennode-stm32" {
+node [
+  fontsize = "12"
+];
+    "node2" [ label = "canopennode-stm32", shape = octagon ];
+    "node3" [ label = "stm32f072rb_disco\n(stm32f072rb_disco::framework)", shape = octagon ];
+    "node2" -> "node3"  // canopennode-stm32 -> stm32f072rb_disco
+    "node4" [ label = "stm32f0xx_hal\n(stm32f0xx_hal::framework)", shape = octagon ];
+    "node3" -> "node4"  // stm32f072rb_disco -> stm32f0xx_hal
+    "node5" [ label = "cmsis-core", shape = pentagon ];
+    "node4" -> "node5" [ style = dashed ] // stm32f0xx_hal -> cmsis-core
+}

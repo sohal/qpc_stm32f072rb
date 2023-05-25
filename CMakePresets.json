@@ -16,7 +16,7 @@
         },
         "binaryDir": "${sourceDir}/build/${presetName}",
         "cacheVariables": {
-            "FETCHCONTENT_UPDATES_DISCONNECTED": "OFF",
+            "FETCHCONTENT_UPDATES_DISCONNECTED": "ON",
             "CMAKE_BUILD_TYPE": "Debug",
             "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}",
             "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/_deps/cmake-toolchains-src/arm-none-eabi-gcc.cmake",

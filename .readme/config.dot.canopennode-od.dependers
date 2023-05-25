@@ -1,0 +1,10 @@
+digraph "canopennode-od" {
+node [
+  fontsize = "12"
+];
+    "node1" [ label = "canopennode-od", shape = octagon ];
+    "node0" [ label = "app", shape = octagon ];
+    "node0" -> "node1"  // app -> canopennode-od
+    "node7" [ label = "blinky", shape = egg ];
+    "node7" -> "node0" [ style = dotted ] // blinky -> app
+}

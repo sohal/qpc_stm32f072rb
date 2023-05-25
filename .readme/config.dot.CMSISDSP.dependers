@@ -1,0 +1,8 @@
+digraph "CMSISDSP" {
+node [
+  fontsize = "12"
+];
+    "node9" [ label = "CMSISDSP", shape = septagon ];
+    "node8" [ label = "cmsis", shape = pentagon ];
+    "node8" -> "node9" [ style = dashed ] // cmsis -> CMSISDSP
+}

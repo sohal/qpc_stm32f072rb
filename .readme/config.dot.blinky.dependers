@@ -1,0 +1,8 @@
+digraph "blinky" {
+node [
+  fontsize = "12"
+];
+    "node7" [ label = "blinky", shape = egg ];
+    "node7" [ label = "blinky", shape = egg ];
+    "node7" -> "node7"  // blinky -> blinky
+}

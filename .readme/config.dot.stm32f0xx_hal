@@ -1,0 +1,8 @@
+digraph "stm32f0xx_hal" {
+node [
+  fontsize = "12"
+];
+    "node4" [ label = "stm32f0xx_hal\n(stm32f0xx_hal::framework)", shape = octagon ];
+    "node5" [ label = "cmsis-core", shape = pentagon ];
+    "node4" -> "node5" [ style = dashed ] // stm32f0xx_hal -> cmsis-core
+}

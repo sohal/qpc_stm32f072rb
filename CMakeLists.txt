@@ -2,7 +2,14 @@
 cmake_minimum_required(VERSION 3.22)
 include(CMakePrintHelpers)
 include(FetchContent)
-set(CORTEX_TYPE "cm0")
+
+# Set pre-requsities for selecting the CPU identifier for cross compilation
+set(CORTEX_TYPE "cm0" CACHE STRING "CPU identifier for toolchains options")
+# Set pre-requsites for selecting the STM32 microcontroller family type
+set(STM32_TYPE "f0" CACHE STRING "STM32 HAL Microcontroller type")
+# Set pre-requisite for exact device name of the STM32
+set(STM32_DEVICE "STM32F072xB" CACHE STRING "STM32 Microcontoller Device")
+
 # Set branch names for the sub modules dependencies
 set(GITHUB_BRANCH_TOOLCHAIN "HEAD" CACHE STRING "git SHA for CMake Toolchain")
 # set the location of all fetched repos
@@ -24,9 +31,9 @@ if(NOT cmake-toolchains_POPULATED)
     FetchContent_Populate(cmake-toolchains)
 endif()
 
-project("stm32f0308_disco" C CXX ASM)
+project("qpc_stm32f072_disco" C CXX ASM)
 
 include(cmake/lib_app.cmake)
-include(cmake/cubemx_hal.cmake)
+include(cmake/stm32f072rb_disco.cmake)
 include(cmake/qpc_app.cmake)
 include(cmake/canopennode.cmake)
